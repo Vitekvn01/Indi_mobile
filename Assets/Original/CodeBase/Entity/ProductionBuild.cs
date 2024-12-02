@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject.ReflectionBaking.Mono.Cecil;
 
-enum ResourceType
-{
-    Wood = 0,
-    Cristals = 1,
-}
+
 
 public class ProductionBuild : MonoBehaviour
 {
@@ -16,5 +12,6 @@ public class ProductionBuild : MonoBehaviour
     [SerializeField] private float _GiveTime;
     [SerializeField] private float _AmountProduction;
     [SerializeField] private float _CurrentProduction;
+    private IResourceManager _ResourceManager;
     [SerializeField] private ResourceType _ResourceType;
 }
