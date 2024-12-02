@@ -20,15 +20,30 @@ public class ResourceManager : MonoBehaviour, IResourceManager
         switch (resourceType)
         {
             case ResourceType.Wood:
-                _magicWood += count;
+                AddMagicWood(count);
                 break;
             case ResourceType.Cristals:
-                _cristals += count;
+                AddCristals(count);
                 break;
-            case ResourceType.MagicPower: 
-                _magicPower += count;
+            case ResourceType.MagicPower:
+                AddMagicPower(count);
                 break;
         }
+    }
+
+    private void AddMagicPower(float count)
+    {
+        _magicPower += count;
+    }
+
+    private void AddCristals(float count)
+    {
+        _cristals += count;
+    }
+
+    private void AddMagicWood(float count)
+    {
+        _magicWood += count;
     }
 
     public void RemoveResource(ResourceType resourceType, float count)
