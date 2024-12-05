@@ -116,8 +116,4 @@ public class ResourceManager : MonoBehaviour, IResourceManager
         _magicWood += count;
         Debug.Log(_magicWood + " Wood");
     }
-
-
-
-
 }

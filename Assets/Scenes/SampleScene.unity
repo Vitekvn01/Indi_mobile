@@ -122,6 +122,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &40831527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 40831528}
+  - component: {fileID: 40831529}
+  m_Layer: 0
+  m_Name: PetsStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &40831528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40831527}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1562286634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &40831529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40831527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9a11dc576f3fa45b1f274ff38bdde0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpenPetsEpic: []
+  OpenPetsLegend: []
+  UnOpenPetsEpic:
+  - {fileID: 11400000, guid: a9848019ade51da4f960fffa97ecf3ee, type: 2}
+  - {fileID: 11400000, guid: aeb00b5d7edfa0e4ea1a748b53a6ee27, type: 2}
+  UnOpenPetsLegend:
+  - {fileID: 11400000, guid: 7975536e7ebe25e4eb840fc457bd5fec, type: 2}
+  - {fileID: 11400000, guid: 27683228edb8e0040ac34ce759ee0df2, type: 2}
 --- !u!1 &477909145
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e5e66e16eae674caf8421e7155fccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  petsStorage: {fileID: 40831529}
   cost: 150
   maxPercent: 100
   startPercentLegendary: 1.1
@@ -551,6 +604,7 @@ Transform:
   m_Children:
   - {fileID: 797292736}
   - {fileID: 477909147}
+  - {fileID: 40831528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807

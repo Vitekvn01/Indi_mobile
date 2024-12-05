@@ -7,7 +7,7 @@ using Zenject;
 
 public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 {
-
+    [SerializeField] PetsStorage petsStorage; // DBG
     [Inject] IResourceManager resourceManager;
 
     [Space][Space]
@@ -48,7 +48,11 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
     private int RollNumberBeforEpic;
     private int RollNumberBeforLegendary;
 
+    private int currentPetEpic;
+    private int currentPetLegend;
+
     private float number;
+    private int calculNumberPet;
 
     private int PrizeAmount;
 
@@ -67,6 +71,8 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Roll();
+
+            CheckPets();
 
             AddPrize();
         }
@@ -248,13 +254,24 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     private void AddPrize()
     {
-        switch(currentPrize)
+        switch (currentPrize)
         {
             case ItemQuality.Common:
                 resourceManager.AddResource(currentResorceTypePrize, PrizeAmount);
                 break;
             case ItemQuality.Rare:
                 resourceManager.AddResource(currentResorceTypePrize, PrizeAmount);
+                break;
+            case ItemQuality.Epic:
+                petsStorage.AddPetsEpic(currentPetEpic);
+                break;
+            case ItemQuality.Legendary:
+                petsStorage.AddPetsLegend(currentPetLegend);
+                break;
+            case ItemQuality.FullPet:
+                Debug.Log("All pets unlock!");
+                break;
+            default:
                 break;
         }
     }
@@ -281,4 +298,54 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         currentResorceTypePrize = ResourceType.Cristals;
     }
 
+    private int CalculateEpic()
+    {
+        if (petsStorage.CheckCountEpicPet() == 0)
+        {
+            Debug.Log(currentPetEpic + " EPIC CURRENT");
+            return -1;
+        }
+
+        calculNumberPet = petsStorage.CheckCountEpicPet();
+
+        number = Random.Range(0, calculNumberPet);
+
+        return (int)number;
+    }
+
+    private int CalculateLegend()
+    {
+        if(petsStorage.CheckCountLegendPet() == 0)
+        {
+            return -1;
+        }
+
+        calculNumberPet = petsStorage.CheckCountLegendPet();
+
+        number = Random.Range(0, calculNumberPet);
+
+        return (int)number;
+    }
+
+    private void CheckPets()
+    {
+        if (currentPrize == ItemQuality.Epic)
+        {
+            currentPetEpic = CalculateEpic();
+
+            if (currentPetEpic == -1)
+            {
+                currentPrize = ItemQuality.FullPet;
+            }
+        }
+        else if (currentPrize == ItemQuality.Legendary)
+        {
+            currentPetLegend = CalculateLegend();
+
+            if (currentPetLegend == -1)
+            {
+                currentPrize = ItemQuality.FullPet;
+            }
+        }
+    }
 }
