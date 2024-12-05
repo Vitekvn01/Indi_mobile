@@ -108,11 +108,13 @@ public class ResourceManager : MonoBehaviour, IResourceManager
     private void AddCristals(float count)
     {
         _cristals += count;
+        Debug.Log(_cristals + " Crystals");
     }
 
     private void AddMagicWood(float count)
     {
         _magicWood += count;
+        Debug.Log(_magicWood + " Wood");
     }
 
 
