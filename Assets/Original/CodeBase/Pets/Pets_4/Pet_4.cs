@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Pet_4", menuName = "Pet_4", order = 51)]
 public class Pet_4 : ScriptableObject
 {
-    [SerializeField] private string name;
+    [SerializeField] private string namePet;
 
     public string GetName()
     {
-        return name;
+        return namePet;
     }
 }

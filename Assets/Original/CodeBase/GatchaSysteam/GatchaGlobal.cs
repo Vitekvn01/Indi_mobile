@@ -7,7 +7,7 @@ using Zenject;
 
 public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 {
-    [SerializeField] PetsStorage petsStorage; // DBG
+    [SerializeField][Inject] PetsStorage petsStorage;
     [Inject] IResourceManager resourceManager;
 
     [Space][Space]
@@ -35,9 +35,9 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     [Space][Space]
 
-    [SerializeField] private int AmountPrizeWood;
-    [SerializeField] private int AmountPrizeCrystal;
-    [SerializeField] private int PrizeCrystalBouns;
+    [SerializeField] private int AmountPrizeWood = 100;
+    [SerializeField] private int AmountPrizeCrystal = 10;
+    [SerializeField] private int PrizeCrystalBouns = 10;
 
     private float ñurrentPercentLegendary = 1.1f;
     private float currentPercentEpic = 15.0f;
@@ -89,7 +89,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     }
 
-    private void Roll()
+    protected virtual void Roll()
     {
         //resourceManager.RemoveResource(ResourceType.MagicPower,cost);
 
@@ -103,7 +103,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
     }
 
 
-    private void CalculatePercent()
+    protected virtual void CalculatePercent()
     {
         float calculNumber;
         
@@ -163,7 +163,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         }
     }
 
-    private void CalculatePrize()
+    protected virtual void CalculatePrize()
     {
         if (RollNumberBeforEpic != EpicGarant && RollNumberBeforLegendary != LegendaryGarant)
         {
@@ -252,7 +252,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         }
     }
 
-    private void AddPrize()
+    protected virtual void AddPrize()
     {
         switch (currentPrize)
         {
@@ -276,7 +276,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         }
     }
 
-    private void CalculCommonBonus()
+    protected virtual void CalculCommonBonus()
     {
         number = Random.Range(0.0f, 100.0f);
 
@@ -292,17 +292,16 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         }
     }
 
-    private void CalculRareBonus()
+    protected virtual void CalculRareBonus()
     {
         PrizeAmount = AmountPrizeCrystal + PrizeCrystalBouns;
         currentResorceTypePrize = ResourceType.Cristals;
     }
 
-    private int CalculateEpic()
+    protected virtual int CalculateEpic()
     {
         if (petsStorage.CheckCountEpicPet() == 0)
         {
-            Debug.Log(currentPetEpic + " EPIC CURRENT");
             return -1;
         }
 
@@ -313,7 +312,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         return (int)number;
     }
 
-    private int CalculateLegend()
+    protected virtual int CalculateLegend()
     {
         if(petsStorage.CheckCountLegendPet() == 0)
         {
@@ -327,7 +326,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         return (int)number;
     }
 
-    private void CheckPets()
+    protected virtual void CheckPets()
     {
         if (currentPrize == ItemQuality.Epic)
         {
