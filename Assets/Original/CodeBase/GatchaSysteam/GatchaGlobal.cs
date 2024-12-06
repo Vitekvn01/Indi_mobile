@@ -43,7 +43,6 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
     private float currentPercentEpic = 15.0f;
     private float currentPercentRare = 21.0f;
 
-
     private int RollNumberBeforRar;
     private int RollNumberBeforEpic;
     private int RollNumberBeforLegendary;
@@ -298,7 +297,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         currentResorceTypePrize = ResourceType.Cristals;
     }
 
-    protected virtual int CalculateEpic()
+    protected virtual int CalculateEpicPet()
     {
         if (petsStorage.CheckCountEpicPet() == 0)
         {
@@ -312,7 +311,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         return (int)number;
     }
 
-    protected virtual int CalculateLegend()
+    protected virtual int CalculateLegendPet()
     {
         if(petsStorage.CheckCountLegendPet() == 0)
         {
@@ -330,7 +329,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
     {
         if (currentPrize == ItemQuality.Epic)
         {
-            currentPetEpic = CalculateEpic();
+            currentPetEpic = CalculateEpicPet();
 
             if (currentPetEpic == -1)
             {
@@ -339,7 +338,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         }
         else if (currentPrize == ItemQuality.Legendary)
         {
-            currentPetLegend = CalculateLegend();
+            currentPetLegend = CalculateLegendPet();
 
             if (currentPetLegend == -1)
             {
