@@ -32,26 +32,30 @@ public class GridManager : MonoBehaviour
 
         Gizmos.color = Color.gray;
 
-        UpdateGridExtents();
+        // Центр сетки
+        Vector3 center = transform.position;
 
-        Vector3 position = transform.position;
+        // Вычисление границ сетки
+        float extentX = transform.localScale.x / 2f;
+        float extentZ = transform.localScale.z / 2f;
 
-        // Отрисовка линий сетки вдоль X
-        for (float x = -gridExtentX; x <= gridExtentX; x += gridSize)
+        // Минимальные и максимальные координаты сетки
+        float minX = center.x - extentX;
+        float maxX = center.x + extentX;
+        float minZ = center.z - extentZ;
+        float maxZ = center.z + extentZ;
+
+        // Отрисовка линий вдоль X
+        for (float x = minX; x <= maxX; x += gridSize)
         {
-            Gizmos.DrawLine(
-                new Vector3(position.x + x, position.y + transform.localScale.y / 2, position.z - gridExtentZ),
-                new Vector3(position.x + x, position.y + transform.localScale.y/2, position.z + gridExtentZ)
-            );
+            Gizmos.DrawLine(new Vector3(x, center.y*2, minZ), new Vector3(x, center.y * 2, maxZ));
         }
 
-        // Отрисовка линий сетки вдоль Z
-        for (float z = -gridExtentZ; z <= gridExtentZ; z += gridSize)
+        // Отрисовка линий вдоль Z
+        for (float z = minZ; z <= maxZ; z += gridSize)
         {
-            Gizmos.DrawLine(
-                new Vector3(position.x - gridExtentX, position.y + transform.localScale.y/2, position.z + z),
-                new Vector3(position.x + gridExtentX, position.y + transform.localScale.y/2, position.z + z)
-            );
+            Gizmos.DrawLine(new Vector3(minX, center.y*2, z), new Vector3(maxX, center.y * 2, z));
         }
     }
 }
+
