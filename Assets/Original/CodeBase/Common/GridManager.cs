@@ -30,11 +30,11 @@ public class GridManager : MonoBehaviour
     {
         if (gridSize <= 0) return;
 
-        Gizmos.color = Color.gray;
+        Gizmos.color = Color.red;
 
         // Центр сетки
         Vector3 center = transform.position;
-
+        center.y += transform.localScale.y / 2;
         // Вычисление границ сетки
         float extentX = transform.localScale.x / 2f;
         float extentZ = transform.localScale.z / 2f;
@@ -48,13 +48,13 @@ public class GridManager : MonoBehaviour
         // Отрисовка линий вдоль X
         for (float x = minX; x <= maxX; x += gridSize)
         {
-            Gizmos.DrawLine(new Vector3(x, center.y*2, minZ), new Vector3(x, center.y * 2, maxZ));
+            Gizmos.DrawLine(new Vector3(x, center.y, minZ), new Vector3(x, center.y , maxZ));
         }
 
         // Отрисовка линий вдоль Z
         for (float z = minZ; z <= maxZ; z += gridSize)
         {
-            Gizmos.DrawLine(new Vector3(minX, center.y*2, z), new Vector3(maxX, center.y * 2, z));
+            Gizmos.DrawLine(new Vector3(minX, center.y, z), new Vector3(maxX, center.y, z));
         }
     }
 }
