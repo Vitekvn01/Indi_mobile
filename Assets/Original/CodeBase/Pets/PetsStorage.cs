@@ -8,49 +8,40 @@ public class PetsStorage : MonoBehaviour
     [SerializeField] private List <ScriptableObject> OpenPetsEpic = new List<ScriptableObject> (); // DBG
     [SerializeField] private List<ScriptableObject> OpenPetsLegend = new List<ScriptableObject>(); // DBG
 
-    [SerializeField] private List<ScriptableObject> UnOpenPetsEpic = new List<ScriptableObject>();
-    [SerializeField] private List<ScriptableObject> UnOpenPetsLegend = new List<ScriptableObject>();
+    [SerializeField] private List<Pet_4> UnOpenPetsEpic = new List<Pet_4>();
+    [SerializeField] private List<Pet_5> UnOpenPetsLegend = new List<Pet_5>();
 
-    public void AddPetsEpic(int number)
+    private Pet_4 currentSO_4;
+    private Pet_5 currentSO_5;
+
+    public Pet_4 AddPetsEpic(int number)
     {
         if (UnOpenPetsEpic[number] != null)
         {
-            OpenPetsEpic.Add(UnOpenPetsEpic[number]);
+            currentSO_4 = null;
+
+            OpenPetsEpic.Add(currentSO_4 = UnOpenPetsEpic[number]);
             UnOpenPetsEpic.Remove(UnOpenPetsEpic[number]);
+
+            return currentSO_4;
         }
+
+        return null;
     }
 
-    public void AddPetsEpic(string name)
-    {
-        for (int i = 0; i < UnOpenPetsEpic.Count; i++)
-        {
-            if(UnOpenPetsEpic[i].name == name)
-            {
-                OpenPetsEpic.Add(UnOpenPetsEpic[i]);
-                UnOpenPetsEpic.Remove(UnOpenPetsEpic[i]);
-            }
-        }
-    }
-
-    public void AddPetsLegend(int number)
+    public Pet_5 AddPetsLegend(int number)
     {
         if (UnOpenPetsLegend[number] != null)
         {
-            OpenPetsLegend.Add(UnOpenPetsLegend[number]);
-            UnOpenPetsLegend.Remove(UnOpenPetsLegend[number]);
-        }
-    }
+            currentSO_5 = null;
 
-    public void AddPetsLegend(string name)
-    {
-        for (int i = 0; i < UnOpenPetsLegend.Count; i++)
-        {
-            if (UnOpenPetsLegend[i].name == name)
-            {
-                UnOpenPetsLegend.Add(UnOpenPetsLegend[i]);
-                UnOpenPetsLegend.Remove(UnOpenPetsLegend[i]);
-            }
+            OpenPetsLegend.Add(currentSO_5 = UnOpenPetsLegend[number]);
+            UnOpenPetsLegend.Remove(UnOpenPetsLegend[number]);
+
+            return currentSO_5;
         }
+
+        return null;
     }
 
     public int CheckCountEpicPet()

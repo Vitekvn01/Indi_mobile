@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dcd78e18208ca4b80ccad414479268, type: 3}
   m_Name: Zilean_4
   m_EditorClassIdentifier: 
-  name: 
+  namePet: Zilean
+  prefab: {fileID: 4197933018689382366, guid: 76ec2642eb56f3b45ae56bbeb38ec28b, type: 3}

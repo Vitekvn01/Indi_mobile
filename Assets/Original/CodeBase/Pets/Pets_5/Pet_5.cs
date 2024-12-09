@@ -6,9 +6,14 @@ using UnityEngine;
 public class Pet_5 : ScriptableObject
 {
     [SerializeField] private string namePet;
-
+    [SerializeField] private GameObject prefab;
     public string GetName()
     {
         return namePet;
+    }
+
+    public GameObject GetPrefab()
+    {
+        return prefab;
     }
 }
