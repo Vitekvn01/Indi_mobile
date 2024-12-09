@@ -7,7 +7,7 @@ using Zenject;
 
 public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 {
-    [SerializeField][Inject] PetsStorage petsStorage;
+    [SerializeField][Inject] PetManager petManager;
     [Inject] IResourceManager resourceManager;
 
     [Space][Space]
@@ -262,10 +262,10 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
                 resourceManager.AddResource(currentResorceTypePrize, PrizeAmount);
                 break;
             case ItemQuality.Epic:
-                petsStorage.AddPetsEpic(currentPetEpic);
+                petManager.AddPetsEpic(currentPetEpic);
                 break;
             case ItemQuality.Legendary:
-                petsStorage.AddPetsLegend(currentPetLegend);
+                petManager.AddPetsLegend(currentPetLegend);
                 break;
             case ItemQuality.FullPet:
                 Debug.Log("All pets unlock!");
@@ -299,12 +299,12 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     protected virtual int CalculateEpicPet()
     {
-        if (petsStorage.CheckCountEpicPet() == 0)
+        if (petManager.CheckCountEpicPet() == 0)
         {
             return -1;
         }
 
-        calculNumberPet = petsStorage.CheckCountEpicPet();
+        calculNumberPet = petManager.CheckCountEpicPet();
 
         number = Random.Range(0, calculNumberPet);
 
@@ -313,12 +313,12 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     protected virtual int CalculateLegendPet()
     {
-        if(petsStorage.CheckCountLegendPet() == 0)
+        if(petManager.CheckCountLegendPet() == 0)
         {
             return -1;
         }
 
-        calculNumberPet = petsStorage.CheckCountLegendPet();
+        calculNumberPet = petManager.CheckCountLegendPet();
 
         number = Random.Range(0, calculNumberPet);
 

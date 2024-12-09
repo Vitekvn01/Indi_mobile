@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PetsStorage : MonoBehaviour
@@ -19,12 +20,36 @@ public class PetsStorage : MonoBehaviour
         }
     }
 
+    public void AddPetsEpic(string name)
+    {
+        for (int i = 0; i < UnOpenPetsEpic.Count; i++)
+        {
+            if(UnOpenPetsEpic[i].name == name)
+            {
+                OpenPetsEpic.Add(UnOpenPetsEpic[i]);
+                UnOpenPetsEpic.Remove(UnOpenPetsEpic[i]);
+            }
+        }
+    }
+
     public void AddPetsLegend(int number)
     {
         if (UnOpenPetsLegend[number] != null)
         {
             OpenPetsLegend.Add(UnOpenPetsLegend[number]);
             UnOpenPetsLegend.Remove(UnOpenPetsLegend[number]);
+        }
+    }
+
+    public void AddPetsLegend(string name)
+    {
+        for (int i = 0; i < UnOpenPetsLegend.Count; i++)
+        {
+            if (UnOpenPetsLegend[i].name == name)
+            {
+                UnOpenPetsLegend.Add(UnOpenPetsLegend[i]);
+                UnOpenPetsLegend.Remove(UnOpenPetsLegend[i]);
+            }
         }
     }
 
