@@ -60,25 +60,26 @@ public class PetManager : MonoBehaviour
         }
     }
 
-    private void CreatPet(Pet_4 pet)
-    {
-        if(pet != null)
-        {
-            currentPet = diContainer.InstantiatePrefab(pet.GetPrefab());
-            currentPet.name = pet.GetName();
+    private Pet thisIsPet;
 
-            MakeAvailablePet(currentPet);
-        }
-    }
-
-    private void CreatPet(Pet_5 pet)
+    private void CreatPet(IPet pet)
     {
         if (pet != null)
         {
             currentPet = diContainer.InstantiatePrefab(pet.GetPrefab());
             currentPet.name = pet.GetName();
 
+            StandartSettings(pet);
+            
             MakeAvailablePet(currentPet);
+        }
+    }
+
+    private void StandartSettings(IPet pet)
+    {
+        if (currentPet.TryGetComponent<Pet>(out thisIsPet))
+        {
+            thisIsPet.SetQuality(pet.GetItemQuality());
         }
     }
 

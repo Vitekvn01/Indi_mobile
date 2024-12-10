@@ -929,8 +929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a26a4476894d7479fb6621cf5a9d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AvailablePets: []
-  UnAvailablePets: []
+  AvailablePetsGameObjects: []
+  UnAvailablePetsGameObjects: []
 --- !u!4 &1808741126
 Transform:
   m_ObjectHideFlags: 0
