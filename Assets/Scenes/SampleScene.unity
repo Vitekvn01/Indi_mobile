@@ -166,12 +166,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9a11dc576f3fa45b1f274ff38bdde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  copyPets: []
   OpenPetsEpic: []
   OpenPetsLegend: []
-  UnOpenPetsEpic:
+  DefaultPetsEpic:
   - {fileID: 11400000, guid: a9848019ade51da4f960fffa97ecf3ee, type: 2}
   - {fileID: 11400000, guid: aeb00b5d7edfa0e4ea1a748b53a6ee27, type: 2}
-  UnOpenPetsLegend:
+  DefaultPetsLegend:
   - {fileID: 11400000, guid: 7975536e7ebe25e4eb840fc457bd5fec, type: 2}
   - {fileID: 11400000, guid: 27683228edb8e0040ac34ce759ee0df2, type: 2}
 --- !u!1 &159868027
@@ -623,7 +624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531ee5c94c70ad04eb5f1e7877d93386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 1
 --- !u!1 &797292734
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1794787817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16b7531142edd24c801a92cb473c3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridManager: {fileID: 747196222}
   _prefab: {fileID: 732756229290400501, guid: 3ac6904d90bd81a489b8103c7e3b1373, type: 3}
   _currentBuild: {fileID: 0}
 --- !u!4 &1794787818

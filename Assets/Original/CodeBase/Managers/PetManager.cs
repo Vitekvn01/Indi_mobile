@@ -54,7 +54,7 @@ public class PetManager : MonoBehaviour
         {
             if (pet == petObject)
             {
-                AvailablePetsGameObjects.Remove(petObject);
+                //AvailablePetsGameObjects.Remove(petObject);
                 UnAvailablePetsGameObjects.Add(petObject);
             }
         }
@@ -72,6 +72,10 @@ public class PetManager : MonoBehaviour
             StandartSettings(pet);
             
             MakeAvailablePet(currentPet);
+        }
+        else
+        {
+            Debug.Log("No creat copy");
         }
     }
 
