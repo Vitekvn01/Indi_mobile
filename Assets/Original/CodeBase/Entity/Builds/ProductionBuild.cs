@@ -5,7 +5,7 @@ using Zenject;
 
 
 
-public class ProductionBuild : MonoBehaviour
+public class ProductionBuildData : MonoBehaviour
 {
     [SerializeField] private float _percentProduction;
     [SerializeField] private float _maxProduction;

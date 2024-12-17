@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestBuildPlace : MonoBehaviour
 {
-    public GridManager _gridManager;
+    public Grid _gridManager;
     public GameObject _prefab;
     public GameObject _currentBuild;
 
