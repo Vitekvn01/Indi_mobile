@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,16 @@ public class ResourceManager : MonoBehaviour, IResourceManager
     private float _magicWood;
     private float _magicPower;
 
+    public event Action<float> OnCountCrystallEvent;
+    public event Action<float> OnCountWoodEvent;
+    public event Action<float> OnCountMagicPowerEvent;
+
+    private void Start()
+    {
+        OnCountCrystallEvent?.Invoke(_cristals);
+        OnCountWoodEvent?.Invoke(_magicWood);
+        OnCountMagicPowerEvent?.Invoke(_magicPower);
+    }
     public void AddResource(ResourceType resourceType, float count)
     {
         switch (resourceType)
@@ -81,6 +92,7 @@ public class ResourceManager : MonoBehaviour, IResourceManager
         if (_magicPower > count)
         {
             _magicPower -= count;
+            OnCountMagicPowerEvent?.Invoke(_magicPower);
         }
     }
 
@@ -89,6 +101,7 @@ public class ResourceManager : MonoBehaviour, IResourceManager
         if (_cristals > count)
         {
             _cristals -= count;
+            OnCountCrystallEvent?.Invoke(_cristals);
         }
     }
 
@@ -97,23 +110,27 @@ public class ResourceManager : MonoBehaviour, IResourceManager
         if (_magicWood > count)
         {
             _magicWood -= count;
+            OnCountWoodEvent?.Invoke(_magicWood);
         }
     }
 
     private void AddMagicPower(float count)
     {
         _magicPower += count;
+        OnCountMagicPowerEvent?.Invoke(_magicPower);
     }
 
     private void AddCristals(float count)
     {
         _cristals += count;
+        OnCountCrystallEvent?.Invoke(_cristals);
         Debug.Log(_cristals + " Crystals");
     }
 
     private void AddMagicWood(float count)
     {
         _magicWood += count;
+        OnCountWoodEvent?.Invoke(_magicWood);
         Debug.Log(_magicWood + " Wood");
     }
 }

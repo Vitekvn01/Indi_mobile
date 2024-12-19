@@ -10,6 +10,6 @@ public interface IBuildShopManager
 
     public void Buy();
 
-    public List<BuildData> GetBuildDataList();
-
+    public List<BuildData> GetProductionBuildDataList(List<BuildData> prodBuildDatas);
+    public List<BuildData> GetDecorationBuildDataList(List<BuildData> decorBuildDatas);
 }
