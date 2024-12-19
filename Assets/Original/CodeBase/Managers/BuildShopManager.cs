@@ -6,7 +6,7 @@ using Zenject;
 
 public class BuildShopManager : MonoBehaviour, IBuildShopManager
 {
-    [SerializeField] private List<BuildData> _buildDataList;
+    [SerializeField] private List<BuildData> _prodBuildDataList;
 
     [Inject] private IBuilder _builder;
     [Inject] private IResourceManager _resourceManager;
@@ -19,8 +19,13 @@ public class BuildShopManager : MonoBehaviour, IBuildShopManager
         throw new NotImplementedException();
     }
 
-    public List<BuildData> GetBuildDataList()
+    public List<BuildData> GetProductionBuildDataList(List<BuildData> prodBuildDatas)
     {
-        throw new NotImplementedException();
+        return prodBuildDatas;
+    }
+
+    public List<BuildData> GetDecorationBuildDataList(List<BuildData> decorBuildDatas)
+    {
+        return decorBuildDatas;
     }
 }
