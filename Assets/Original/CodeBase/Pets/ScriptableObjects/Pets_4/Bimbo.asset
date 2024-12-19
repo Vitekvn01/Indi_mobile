@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1dcd78e18208ca4b80ccad414479268, type: 3}
-  m_Name: Amumu_4
+  m_Name: Bimbo
   m_EditorClassIdentifier: 
-  namePet: Amumu
+  namePet: Bimbo
+  petType: Deer
   prefab: {fileID: 4197933018689382366, guid: ffb562e9d39fd9f4d8112fc2a330e4ab, type: 3}
+  itemQuality: 3
+  produceProcent: 0

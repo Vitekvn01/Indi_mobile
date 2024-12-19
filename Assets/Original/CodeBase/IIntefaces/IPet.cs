@@ -7,8 +7,10 @@ public interface IPet
 {
     public ItemQuality GetItemQuality();
 
+    public GameObject GetPrefab();
+
     public string GetName();
 
-    public GameObject GetPrefab();
+    public string GetPetType();
 
 }

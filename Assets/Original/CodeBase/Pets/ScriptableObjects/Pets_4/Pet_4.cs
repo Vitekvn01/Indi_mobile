@@ -7,6 +7,7 @@ using UnityEngine;
 public class Pet_4 : ScriptableObject,IPet
 {
     [SerializeField] private string namePet;
+    [SerializeField] private string petType;
     [SerializeField] private GameObject prefab;
     [SerializeField] private ItemQuality itemQuality = ItemQuality.Epic;
     [SerializeField] private float produceProcent;
@@ -23,5 +24,10 @@ public class Pet_4 : ScriptableObject,IPet
     public ItemQuality GetItemQuality()
     {
         return itemQuality;
+    }
+
+    public string GetPetType()
+    {
+        return petType;
     }
 }

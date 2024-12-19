@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cc595185f208c24eaa54693d6937f6d, type: 3}
-  m_Name: Mupsy_5
+  m_Name: Azriel
   m_EditorClassIdentifier: 
-  namePet: Mupsy
+  namePet: Azriel
+  petType: Dragon
   prefab: {fileID: 4197933018689382366, guid: 3ecec3264988cd14684c5ddbd56511ab, type: 3}
+  itemQuality: 4
+  produceProcent: 0

@@ -7,6 +7,7 @@ public class ResourceManagerInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<IResourceManager>().To<ResourceManager>().FromComponentInNewPrefab(resourceManager).AsSingle();
+        //Container.Bind<IResourceManager>().To<ResourceManager>().FromComponentInNewPrefab(resourceManager).AsSingle();
+        Container.Bind<IResourceManager>().To<ResourceManager>().FromInstance(resourceManager);
     }
 }
