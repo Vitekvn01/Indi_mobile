@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +5,6 @@ using Zenject;
 
 public class BuildShopView : MonoBehaviour
 {
-    [SerializeField] private GameObject _buildDataViewPrefab;
 
     [SerializeField] private TextMeshProUGUI _countCrystall;
     [SerializeField] private TextMeshProUGUI _countWood;
