@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98e03bc9b532d7408ce2f4bcf5a08d1, type: 3}
+  m_Name: Route_1_Scene_1
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 6049304277982625667, guid: ae85c191bea76bc41abc73d1d825b4e6, type: 3}
+  - {fileID: 7199981023891099502, guid: 8a3c3f039a162e74c8c2682bd68e0bd1, type: 3}
+  - {fileID: 1454860887342280129, guid: 8626ef80b307e224d99fca8049beabf2, type: 3}
+  - {fileID: 7492831589364566416, guid: 8d1622414668dc047ad3b81ab4c7fde0, type: 3}

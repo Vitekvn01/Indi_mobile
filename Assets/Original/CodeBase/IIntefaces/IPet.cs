@@ -12,5 +12,4 @@ public interface IPet
     public string GetName();
 
     public string GetPetType();
-
 }
