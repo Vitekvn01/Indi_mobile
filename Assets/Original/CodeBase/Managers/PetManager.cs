@@ -13,23 +13,9 @@ public class PetManager : MonoBehaviour
     [SerializeField] private List<IPet> AvailablePetsGameObjects = new List<IPet>();
     [SerializeField] private List<IPet> UnAvailablePetsGameObjects = new List<IPet>();
 
-
-    [SerializeField] private List<GameObject> petsOnScene = new List<GameObject>();
-    private List<IPet> petsJoinLine = new List<IPet>();
-
-    [SerializeField] private int MaxPetOnScene = 0;
-
-    private void Start()
-    {
-        MaxPetOnScene -= 1;
-    }
-
-    private GameObject currentPet;
-
-    private void Update()
-    {
-        CheckMaxPetOnScene();
-    }
+    public delegate void Manager(IPet pet);
+    public event Manager UnAvailable;
+    public event Manager CreatePet;
 
     public void AddPetsEpic(int number)
     {
@@ -57,7 +43,7 @@ public class PetManager : MonoBehaviour
         {
             if(pet.GetName() == petObject.GetName())
             {
-                createPet(petObject);
+                CreatePet?.Invoke(petObject);
 
                 UnAvailablePetsGameObjects.Remove(petObject);
             }
@@ -73,61 +59,10 @@ public class PetManager : MonoBehaviour
 
     private void MakeUnAvailablePet(IPet petObject)
     {
-        foreach(var pet in petsOnScene)
-        {
-            if(petObject.GetName() == pet.transform.name)
-            {
-                AvailablePetsGameObjects.Remove(petObject);
-                UnAvailablePetsGameObjects.Add(petObject);
-                petsOnScene.Remove(pet);
-                Destroy(pet);
-            }
-        }
-    }
+        AvailablePetsGameObjects.Remove(petObject);
+        UnAvailablePetsGameObjects.Add(petObject);
 
-    private void CheckMaxPetOnScene()
-    {
-        if(petsOnScene.Count < MaxPetOnScene)
-        {
-            for(int i = 0; i < petsJoinLine.Count; i++)
-            {
-                createPet(petsJoinLine[i]);
-                petsJoinLine.Remove(petsJoinLine[i]);
-                petsOnScene.Add(currentPet);
-
-                if(petsOnScene.Count < MaxPetOnScene)
-                {
-                    i = 0;
-                }
-                else
-                {
-                    i = petsJoinLine.Count;
-                }
-            }
-        }
-    }
-
-
-    private Pet thisIsPet;
-
-    private void createPet(IPet pet)
-    {
-
-        if (petsOnScene.Count > MaxPetOnScene) // !!!!!!!!!!
-        {
-            petsJoinLine.Add(pet);
-            foreach(var petik in petsJoinLine)
-            {
-                Debug.Log(petik + " +1 in Join Line");
-            }
-        }
-        else
-        {
-            currentPet = diContainer.InstantiatePrefab(pet.GetPrefab());
-            currentPet.name = pet.GetName();
-            StandartSettings(pet);
-            petsOnScene.Add(currentPet);
-        }
+        UnAvailable?.Invoke(petObject);
     }
 
     private void initialSetupPet(IPet pet)
@@ -136,19 +71,11 @@ public class PetManager : MonoBehaviour
         {
             MakeAvailablePet(pet);
 
-            createPet(pet);
+            CreatePet?.Invoke(pet);
         }
         else
         {
             Debug.Log("No creat copy");
-        }
-    }
-
-    private void StandartSettings(IPet pet)
-    {
-        if (currentPet.TryGetComponent<Pet>(out thisIsPet))
-        {
-            thisIsPet.SetQuality(pet.GetItemQuality());
         }
     }
 }
