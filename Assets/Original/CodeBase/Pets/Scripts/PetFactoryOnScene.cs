@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class PetBehaviourOnScene : MonoBehaviour
+public class PetFactoryOnScene : MonoBehaviour
 {
     [Inject] private DiContainer diContainer;
     [Inject] private PetManager petManager;
