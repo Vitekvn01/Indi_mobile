@@ -14,7 +14,7 @@ public class ResourceManager : MonoBehaviour, IResourceManager
 {
     private float _cristals;
     private float _magicWood;
-    private float _magicPower;
+    [SerializeField]private float _magicPower; // DBG
 
     public event Action<float> OnCountCrystallEvent;
     public event Action<float> OnCountWoodEvent;
@@ -86,10 +86,25 @@ public class ResourceManager : MonoBehaviour, IResourceManager
 
     }
 
+    public float getResourceCount(ResourceType resourceType)
+    {
+        switch (resourceType)
+        {
+            case ResourceType.Wood: 
+                return _magicWood;
+            case ResourceType.Cristals:
+                return _cristals;
+            case ResourceType.MagicPower:
+                return _magicPower;
+            default:
+                return -1;
+        }
+    }
+
 
     private void RemoveMagicPower(float count)
     {
-        if (_magicPower > count)
+        if (_magicPower >= count)
         {
             _magicPower -= count;
             OnCountMagicPowerEvent?.Invoke(_magicPower);

@@ -13,4 +13,6 @@ public interface IResourceManager
     public void RemoveResource(ResourceType resourceType, float count);
 
     public bool CheckEnoughResource(ResourceType resourceType, float requestResources);
+
+    public float getResourceCount(ResourceType resourceType);
 }

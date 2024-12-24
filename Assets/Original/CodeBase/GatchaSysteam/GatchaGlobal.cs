@@ -67,6 +67,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Roll();
@@ -75,22 +76,21 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
             AddPrize();
         }
+        */
     }
 
     public void TryRoll()
     {
-        /*
-        if(resourceManager.CheckEnoughResource(ResourceType.MagicPower, cost))
-        {
-            Roll();
-        }
-        */
+        Roll();
 
+        CheckPets();
+
+        AddPrize(); 
     }
 
     protected virtual void Roll()
     {
-        //resourceManager.RemoveResource(ResourceType.MagicPower,cost);
+        resourceManager.RemoveResource(ResourceType.MagicPower,cost);
 
         number = Random.Range(0.0f, 100.0f);
 
@@ -105,7 +105,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
     protected virtual void CalculatePercent()
     {
         float calculNumber;
-        
+
         if (RollNumberBeforLegendary > 0)
         {
             // LEGENDARY
@@ -279,7 +279,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
     {
         number = Random.Range(0.0f, 100.0f);
 
-        if(number < 30)
+        if (number < 30)
         {
             PrizeAmount = AmountPrizeCrystal;
             currentResorceTypePrize = ResourceType.Cristals;
@@ -313,7 +313,7 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     protected virtual int CalculateLegendPet()
     {
-        if(petManager.CheckCountLegendPet() == 0)
+        if (petManager.CheckCountLegendPet() == 0)
         {
             return -1;
         }
@@ -345,5 +345,10 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
                 currentPrize = ItemQuality.FullPet;
             }
         }
+    }
+
+    public virtual float GetCostRoll()
+    {
+        return cost;
     }
 }
