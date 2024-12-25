@@ -12,11 +12,18 @@ public class PrizePanelSystem : MonoBehaviour
 
     private Text textPrize;
 
+    public delegate void PrizePanel();
+    public event PrizePanel EventPrizePanelDestroy;
+
     public void InstanceManager(IGatchaSysteam gatchaSystem)
     {
         gatchaGlobal = gatchaSystem;
     }
 
+    public void buttonDestroyPrizePanel()
+    {
+       EventPrizePanelDestroy?.Invoke();
+    }
 
     public void SetText(string text)
     {

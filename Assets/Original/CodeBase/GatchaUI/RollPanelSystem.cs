@@ -13,31 +13,19 @@ public class RollPanelSystem : MonoBehaviour
 
     private Button buttonTryRoll;
 
-    public delegate void rollPanelSystem();
-    public event rollPanelSystem EventCreatLoadPanel;
-
-    public void InstanceManager(IResourceManager managerResourceObject, IGatchaSysteam gatchaSystemObject)
-    {
-        manager = managerResourceObject;
-        gatchaSystem = gatchaSystemObject;
-    }
+    public delegate void RollPanel();
+    public event RollPanel EventCreatLoadPanel;
+    public event RollPanel EventDestroyRollPanel;
 
     private void Start()
     {
         buttonTryRoll = gameObject.GetComponentInChildren<Button>();
     }
 
-    public void TryRollPanel()
-    {
-        EventCreatLoadPanel?.Invoke();
-    }
-
-
     private void Update()
     {
         if (buttonTryRoll != null)
         {
-            //if (manager.CheckEnoughResource(ResourceType.MagicPower, gatchaSystem.GetCostRoll() - 1)) getResourceCount
             if (manager.getResourceCount(ResourceType.MagicPower) >= gatchaSystem.GetCostRoll())
             {
                 buttonTryRoll.interactable = true;
@@ -49,4 +37,20 @@ public class RollPanelSystem : MonoBehaviour
         }
     }
 
+    public void InstanceManager(IResourceManager managerResourceObject, IGatchaSysteam gatchaSystemObject)
+    {
+        manager = managerResourceObject;
+        gatchaSystem = gatchaSystemObject;
+    }
+
+    public void TryRollPanel()
+    {
+        EventCreatLoadPanel?.Invoke();
+        DestroyPanel();
+    }
+
+    public void DestroyPanel()
+    {
+        EventDestroyRollPanel?.Invoke();
+    }
 }

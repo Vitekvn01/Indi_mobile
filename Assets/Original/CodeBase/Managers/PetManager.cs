@@ -17,14 +17,32 @@ public class PetManager : MonoBehaviour
     public event Manager UnAvailable;
     public event Manager CreatePet;
 
-    public void AddPetsEpic(int number)
+    private IPet currentPett;
+
+    public IPet AddPetsEpic(int number)
     {
-        initialSetupPet(petsStorage.AddPetsEpic(number));
+        currentPett = petsStorage.AddPetsEpic(number);
+        initialSetupPet(currentPett);
+
+        if(currentPett == null)
+        {
+            currentPett = petsStorage.CheckPetNumberEpic(number);
+        }
+
+        return currentPett;
     }
 
-    public void AddPetsLegend(int number)
+    public IPet AddPetsLegend(int number)
     {
-        initialSetupPet(petsStorage.AddPetsLegend(number));
+        currentPett = petsStorage.AddPetsLegend(number);
+        initialSetupPet(currentPett);
+
+        if (currentPett == null)
+        {
+            currentPett = petsStorage.CheckPetNumberLegend(number);
+        }
+
+        return currentPett;
     }
 
     public int CheckCountEpicPet()

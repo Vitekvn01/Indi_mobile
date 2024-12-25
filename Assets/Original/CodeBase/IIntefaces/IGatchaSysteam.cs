@@ -12,7 +12,7 @@ public interface IGatchaSysteam
     public delegate void EventAddResource(ResourceType type, int count);
     public event EventAddResource AddResource;
 
-    public delegate void EventAddPet();
+    public delegate void EventAddPet(IPet pet);
     public event EventAddPet AddPet;
 
 }

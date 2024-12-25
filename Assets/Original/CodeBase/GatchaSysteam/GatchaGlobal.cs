@@ -256,9 +256,6 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
     public event IGatchaSysteam.EventAddResource AddResource;
     public event IGatchaSysteam.EventAddPet AddPet;
 
-    //public delegate void EventAddPet();
-    //public event EventAddPet AddPet;
-
 
     protected virtual void AddPrize()
     {
@@ -273,10 +270,10 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
                 AddResource?.Invoke(currentResorceTypePrize, PrizeAmount);
                 break;
             case ItemQuality.Epic:
-                petManager.AddPetsEpic(currentPetEpic);
+                AddPet?.Invoke(petManager.AddPetsEpic(currentPetEpic));
                 break;
             case ItemQuality.Legendary:
-                petManager.AddPetsLegend(currentPetLegend);
+                AddPet?.Invoke(petManager.AddPetsLegend(currentPetLegend));
                 break;
             case ItemQuality.FullPet:
                 Debug.Log("All pets unlock!");

@@ -6,7 +6,7 @@ using Zenject;
 
 public class GatchaSystemUI : MonoBehaviour
 {
-    [SerializeField] private GameObject panelTryRollPrefab;
+    [SerializeField] private GameObject panelRollPrefab;
     [SerializeField] private GameObject panelLoadPrefab;
     [SerializeField] private GameObject panelPrizePrefab;
 
@@ -17,11 +17,11 @@ public class GatchaSystemUI : MonoBehaviour
 
     [Inject] private DiContainer container;
     
-    private GameObject panelTryRoll;
+    private GameObject panelRoll;
     private GameObject panelLoad;
     private GameObject panelPrize;
 
-    private Button buttonTryRoll;
+    [SerializeField]private Button buttonTryRoll;
 
     private RollPanelSystem rollPanelSystemObject;
     private LoadPanelSystem loadPanelSystemObject;
@@ -31,16 +31,33 @@ public class GatchaSystemUI : MonoBehaviour
 
     private Coroutine currentCorutine;
 
+    private ResourceType resourceTypeSet;
+    private int resourceCount;
+
+    private string prize;
+
     private void Start()
     {
-        gatchaSystem.AddResource += ChangePrizeText;
+        gatchaSystem.AddResource += changePrizeTextResource;
+        gatchaSystem.AddPet += changePrizeTextPet;
+    }
+
+    private void Update()
+    {
+        if (panelPrize == null && panelLoad == null && panelRoll == null)
+        {
+            buttonTryRoll.interactable = true;
+        }
+        else
+        {
+            buttonTryRoll.interactable = false;
+        }
     }
 
     private IEnumerator TimerCoroutine()
     {
         while (timer < LoadPanelTimeActivate)
         {
-            Debug.Log(timer);
             timer += Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
@@ -50,16 +67,13 @@ public class GatchaSystemUI : MonoBehaviour
 
     public void CreatPanelTryRoll()
     {
-        if(panelTryRoll == null)
-        {
-            panelTryRoll = container.InstantiatePrefab(panelTryRollPrefab, gameObject.transform);
-            buttonTryRoll = panelTryRoll.GetComponentInChildren<Button>();
+        panelRoll = container.InstantiatePrefab(panelRollPrefab, gameObject.transform);
 
-            if(panelTryRoll.TryGetComponent<RollPanelSystem>(out rollPanelSystemObject))
-            {
-                rollPanelSystemObject.InstanceManager(manager, gatchaSystem);
-                rollPanelSystemObject.EventCreatLoadPanel += creatLoadPanel;
-            }
+        if (panelRoll.TryGetComponent<RollPanelSystem>(out rollPanelSystemObject))
+        {
+            rollPanelSystemObject.InstanceManager(manager, gatchaSystem);
+            rollPanelSystemObject.EventCreatLoadPanel += creatLoadPanel;
+            rollPanelSystemObject.EventDestroyRollPanel += destroyRollPanel;
         }
     }
 
@@ -74,9 +88,12 @@ public class GatchaSystemUI : MonoBehaviour
 
         rollPanelSystemObject.EventCreatLoadPanel -= creatLoadPanel;
 
-        Destroy(panelTryRoll);
-
         currentCorutine = StartCoroutine(TimerCoroutine());
+    }
+
+    private void destroyRollPanel()
+    {
+        Destroy(panelRoll);
     }
 
     private void skipLoadPanel()
@@ -110,34 +127,29 @@ public class GatchaSystemUI : MonoBehaviour
         if (panelPrize.TryGetComponent<PrizePanelSystem>(out prizePanelSystemObject))
         {
             prizePanelSystemObject.InstanceManager(gatchaSystem);
-            prizePanelSystemObject.SetText(resourceTypeSet + " " + resourceCount);
+            prizePanelSystemObject.SetText(prize);
+            prizePanelSystemObject.EventPrizePanelDestroy += destroyPrizePanel;
         }
     }
 
-    private ResourceType resourceTypeSet;
-    private int resourceCount;
-
-    private void ChangePrizeText(ResourceType type,int count)
+    private void destroyPrizePanel()
     {
+        if(panelPrize != null)
+        {
+            Destroy(panelPrize);
+        }
+    }
 
+    private void changePrizeTextResource(ResourceType type,int count)
+    {
         resourceTypeSet = type;
         resourceCount = count;
-        /*
-        Debug.Log("Change");
-        if (panelPrize != null && prizePanelSystemObject != null)
-        {
-            prizePanelSystemObject.SetText(type + " " + count);
-        }
-        */
+
+        prize = resourceTypeSet + " " + resourceCount;
     }
 
-    /*
-    private void Update()
+    private void changePrizeTextPet(IPet pet)
     {
-        if(panelPrize != null && prizePanelSystemObject != null)
-        {
-
-        }
+        prize = pet.GetName();
     }
-    */
 }

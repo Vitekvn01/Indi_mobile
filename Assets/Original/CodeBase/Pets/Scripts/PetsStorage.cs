@@ -16,7 +16,7 @@ public class PetsStorage : MonoBehaviour
     private Pet_4 currentSO_4;
     private Pet_5 currentSO_5;
 
-    public Pet_4 AddPetsEpic(int number)
+    public IPet AddPetsEpic(int number)
     {
         if (DefaultPetsEpic[number] != null)
         {
@@ -27,7 +27,7 @@ public class PetsStorage : MonoBehaviour
                 if (copyPet == currentSO_4)
                 {
                     copyPets.Add(currentSO_4);
-                    return AddCopyEpic();
+                    return AddCopy();
                 }
             }
 
@@ -39,7 +39,7 @@ public class PetsStorage : MonoBehaviour
         return null;
     }
 
-    public Pet_5 AddPetsLegend(int number)
+    public IPet AddPetsLegend(int number)
     {
         if (DefaultPetsLegend[number] != null)
         {
@@ -50,7 +50,7 @@ public class PetsStorage : MonoBehaviour
                 if(copyPet == currentSO_5)
                 {
                     copyPets.Add(currentSO_5);
-                    return AddCopyLegend();
+                    return AddCopy();
                 }
             }
 
@@ -63,14 +63,7 @@ public class PetsStorage : MonoBehaviour
         return null;
     }
 
-    private Pet_5 AddCopyLegend()
-    {
-        Debug.Log("Copy");
-
-        return null;
-    }
-
-    private Pet_4 AddCopyEpic()
+    private IPet AddCopy()
     {
         Debug.Log("Copy");
 
@@ -85,5 +78,15 @@ public class PetsStorage : MonoBehaviour
     public int CheckCountLegendPet()
     {
         return DefaultPetsLegend.Count;
+    }
+
+    public IPet CheckPetNumberEpic(int number)
+    {
+        return DefaultPetsEpic[number];
+    }
+
+    public IPet CheckPetNumberLegend(int number)
+    {
+        return DefaultPetsLegend[number];
     }
 }
