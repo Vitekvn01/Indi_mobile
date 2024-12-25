@@ -1371,6 +1371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTryRollPrefab: {fileID: 2959067975819597193, guid: 5ad36339785c12b449ef195054b43624, type: 3}
   panelLoadPrefab: {fileID: 4054443243358429187, guid: a7abbe27346b4bc44996624d2198c7af, type: 3}
+  panelPrizePrefab: {fileID: 4745634912180881385, guid: e376a2d9efb045b42a0fd1b8f02d3c7a, type: 3}
   LoadPanelTimeActivate: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

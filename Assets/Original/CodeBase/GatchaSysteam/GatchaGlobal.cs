@@ -250,6 +250,15 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
             }
         }
     }
+    
+
+    //public delegate void EventAddResource(ResourceType type,int count);
+    public event IGatchaSysteam.EventAddResource AddResource;
+    public event IGatchaSysteam.EventAddPet AddPet;
+
+    //public delegate void EventAddPet();
+    //public event EventAddPet AddPet;
+
 
     protected virtual void AddPrize()
     {
@@ -257,9 +266,11 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
         {
             case ItemQuality.Common:
                 resourceManager.AddResource(currentResorceTypePrize, PrizeAmount);
+                AddResource?.Invoke(currentResorceTypePrize, PrizeAmount);
                 break;
             case ItemQuality.Rare:
                 resourceManager.AddResource(currentResorceTypePrize, PrizeAmount);
+                AddResource?.Invoke(currentResorceTypePrize, PrizeAmount);
                 break;
             case ItemQuality.Epic:
                 petManager.AddPetsEpic(currentPetEpic);

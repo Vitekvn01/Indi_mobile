@@ -16,7 +16,7 @@ public class RollPanelSystem : MonoBehaviour
     public delegate void rollPanelSystem();
     public event rollPanelSystem EventCreatLoadPanel;
 
-    public void instanceManager(IResourceManager managerResourceObject, IGatchaSysteam gatchaSystemObject)
+    public void InstanceManager(IResourceManager managerResourceObject, IGatchaSysteam gatchaSystemObject)
     {
         manager = managerResourceObject;
         gatchaSystem = gatchaSystemObject;

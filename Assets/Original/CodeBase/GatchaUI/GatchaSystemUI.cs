@@ -8,6 +8,7 @@ public class GatchaSystemUI : MonoBehaviour
 {
     [SerializeField] private GameObject panelTryRollPrefab;
     [SerializeField] private GameObject panelLoadPrefab;
+    [SerializeField] private GameObject panelPrizePrefab;
 
     [Inject] private IResourceManager manager;
     [Inject] private IGatchaSysteam gatchaSystem;
@@ -18,15 +19,22 @@ public class GatchaSystemUI : MonoBehaviour
     
     private GameObject panelTryRoll;
     private GameObject panelLoad;
+    private GameObject panelPrize;
 
     private Button buttonTryRoll;
 
     private RollPanelSystem rollPanelSystemObject;
     private LoadPanelSystem loadPanelSystemObject;
+    private PrizePanelSystem prizePanelSystemObject;
 
     private float timer;
 
     private Coroutine currentCorutine;
+
+    private void Start()
+    {
+        gatchaSystem.AddResource += ChangePrizeText;
+    }
 
     private IEnumerator TimerCoroutine()
     {
@@ -49,7 +57,7 @@ public class GatchaSystemUI : MonoBehaviour
 
             if(panelTryRoll.TryGetComponent<RollPanelSystem>(out rollPanelSystemObject))
             {
-                rollPanelSystemObject.instanceManager(manager, gatchaSystem);
+                rollPanelSystemObject.InstanceManager(manager, gatchaSystem);
                 rollPanelSystemObject.EventCreatLoadPanel += creatLoadPanel;
             }
         }
@@ -92,6 +100,44 @@ public class GatchaSystemUI : MonoBehaviour
     {
         destroyLoadPanel();
         gatchaSystem.TryRoll();
+        createPrizePanelSystem();
     }
 
+    private void createPrizePanelSystem()
+    {
+        panelPrize = container.InstantiatePrefab(panelPrizePrefab, gameObject.transform);
+
+        if (panelPrize.TryGetComponent<PrizePanelSystem>(out prizePanelSystemObject))
+        {
+            prizePanelSystemObject.InstanceManager(gatchaSystem);
+            prizePanelSystemObject.SetText(resourceTypeSet + " " + resourceCount);
+        }
+    }
+
+    private ResourceType resourceTypeSet;
+    private int resourceCount;
+
+    private void ChangePrizeText(ResourceType type,int count)
+    {
+
+        resourceTypeSet = type;
+        resourceCount = count;
+        /*
+        Debug.Log("Change");
+        if (panelPrize != null && prizePanelSystemObject != null)
+        {
+            prizePanelSystemObject.SetText(type + " " + count);
+        }
+        */
+    }
+
+    /*
+    private void Update()
+    {
+        if(panelPrize != null && prizePanelSystemObject != null)
+        {
+
+        }
+    }
+    */
 }

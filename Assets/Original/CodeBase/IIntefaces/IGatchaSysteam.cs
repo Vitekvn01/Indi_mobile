@@ -9,4 +9,10 @@ public interface IGatchaSysteam
 
     public float GetCostRoll();
 
+    public delegate void EventAddResource(ResourceType type, int count);
+    public event EventAddResource AddResource;
+
+    public delegate void EventAddPet();
+    public event EventAddPet AddPet;
+
 }
