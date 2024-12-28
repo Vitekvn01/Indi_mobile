@@ -1,17 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using Zenject;
 
-public class BuildDataListView : MonoBehaviour
+public class BuildDataListBuilder : MonoBehaviour
 {
     [SerializeField] private GameObject _parentObject;
     [SerializeField] private GameObject _buildDataViewPrefab;
-    private void InitList(List<BuildData> buildDatas)
+
+    [Inject] private DiContainer _container;
+
+    public void InitList(List<BuildData> buildDatas)
     {
         for (int i = 0; i < buildDatas.Count; i++)
         {
-            BuildDataView buildDataView = Instantiate(_buildDataViewPrefab, _parentObject.transform).GetComponent<BuildDataView>();
+            BuildDataView buildDataView = _container.InstantiatePrefab(_buildDataViewPrefab, _parentObject.transform).GetComponent<BuildDataView>();
+            buildDataView.SetBuildData(buildDatas[i]);
             buildDataView.SetImage(buildDatas[i].GetImage());
             buildDataView.SetName(buildDatas[i].GetName());
             buildDataView.SetWoodPrice(buildDatas[i].GetDescription());
@@ -19,4 +23,6 @@ public class BuildDataListView : MonoBehaviour
             buildDataView.SetWoodPrice(buildDatas[i].GetWoodPrice().ToString());
         }
     }
+
+
 }

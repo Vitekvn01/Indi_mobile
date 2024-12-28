@@ -12,9 +12,9 @@ public enum ResourceType
 }
 public class ResourceManager : MonoBehaviour, IResourceManager
 {
-    private float _cristals;
-    private float _magicWood;
-    [SerializeField]private float _magicPower; // DBG
+    [SerializeField] private float _cristals;
+    [SerializeField] private float _magicWood;
+    [SerializeField] private float _magicPower;
 
     public event Action<float> OnCountCrystallEvent;
     public event Action<float> OnCountWoodEvent;
