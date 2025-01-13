@@ -13,28 +13,58 @@ public class Builder : MonoBehaviour, IBuilder
 
     private Vector3 _lastDragPosition;
 
-
     [SerializeField] private GameObject _buildPrefab;
     [SerializeField] private GameObject _currentBuildInstal;
 
-    public event Action OnBuildingEvent;
+    public event Action OnStartBuildingEvent;
     public event Action OnClouseBuildingEvent;
+
+    public event Action OnCancelBuildingEvent;
+    public event Action OnCompleteBuildingEvent;
 
     private void Start()
     {
-        OnBuildingEvent.Invoke();
-
         _mobileInput.ClickDown += OnClickDown;
         _mobileInput.Drag += OnDrag;
         _mobileInput.ClickUp += OnClickUp;
-
-        Spawn();
     }
 
     public void Instal()
     {
+        if (_currentBuildInstal != null)
+        {
+            _currentBuildInstal = null;
+            OnCompleteBuildingEvent.Invoke();
+        }
+    }
+
+    public void SetCurrentBuild(GameObject build)
+    {
+        _currentBuildInstal = build;
+    }
+
+    public void Cancel()
+    {
+        Destroy(_currentBuildInstal);
         _currentBuildInstal = null;
-        OnBuildingEvent.Invoke();
+        OnCancelBuildingEvent?.Invoke();
+        OnClouseBuildingEvent?.Invoke();
+    }
+
+    public void Rotation()
+    {
+        if (_currentBuildInstal != null)
+        {
+            _currentBuildInstal.transform.Rotate(0, 90, 0);
+            Debug.Log("rotation");
+        }
+    }
+
+    public void CreateBuild(GameObject buildPrefab)
+    {
+        _buildPrefab = buildPrefab;
+        Spawn();
+        OnStartBuildingEvent?.Invoke();
     }
 
     private void OnClickDown(Vector3 position)
@@ -56,11 +86,7 @@ public class Builder : MonoBehaviour, IBuilder
     }
 
 
-    public void SetBuild(GameObject buildPrefab)
-    {
-        _buildPrefab = buildPrefab;
-        OnBuildingEvent.Invoke();
-    }
+
 
     private void Update()
     {
@@ -82,18 +108,7 @@ public class Builder : MonoBehaviour, IBuilder
         _currentBuildInstal = Instantiate(_buildPrefab);
     }
 
-    public void Cancel()
-    {
-        Destroy(_currentBuildInstal);
-        _currentBuildInstal = null;
-        OnBuildingEvent.Invoke();
-    }
 
-    public void Rotation()
-    {
-        if (_currentBuildInstal != null)
-        {
-            _currentBuildInstal.transform.Rotate(0,90,0);
-        }
-    }
+
+
 }

@@ -5,12 +5,15 @@ using UnityEngine;
 
 public interface IBuilder
 {
-    public event Action OnBuildingEvent;
-
+    public event Action OnStartBuildingEvent;
     public event Action OnClouseBuildingEvent;
 
-    public void SetBuild(GameObject buildPrefab);
+    public event Action OnCompleteBuildingEvent;
+    public event Action OnCancelBuildingEvent;
 
+    public void CreateBuild(GameObject buildPrefab);
+
+    public void SetCurrentBuild(GameObject build);
     public void Instal();
 
     public void Cancel();
