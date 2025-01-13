@@ -86,13 +86,16 @@ public class GatchaSystemUI : MonoBehaviour
             loadPanelSystemObject.EventSkipLoad += skipLoadPanel;
         }
 
-        rollPanelSystemObject.EventCreatLoadPanel -= creatLoadPanel;
+        //rollPanelSystemObject.EventCreatLoadPanel -= creatLoadPanel;
 
         currentCorutine = StartCoroutine(TimerCoroutine());
     }
 
     private void destroyRollPanel()
     {
+        rollPanelSystemObject.EventCreatLoadPanel -= creatLoadPanel;
+        rollPanelSystemObject.EventDestroyRollPanel -= destroyRollPanel;
+
         Destroy(panelRoll);
     }
 
@@ -136,6 +139,7 @@ public class GatchaSystemUI : MonoBehaviour
     {
         if(panelPrize != null)
         {
+            prizePanelSystemObject.EventPrizePanelDestroy -= destroyPrizePanel;
             Destroy(panelPrize);
         }
     }
