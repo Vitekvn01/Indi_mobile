@@ -8,7 +8,7 @@ public class PetsStorage : MonoBehaviour
     [SerializeField] private List<ScriptableObject> copyPets = new List<ScriptableObject>(); // DBG
 
     [SerializeField] private List <ScriptableObject> OpenPetsEpic = new List<ScriptableObject> (); // DBG
-    [SerializeField] private List <ScriptableObject> OpenPetsLegend = new List<ScriptableObject>(); // DBG
+    [SerializeField] private List<ScriptableObject> OpenPetsLegend = new List<ScriptableObject>(); // DBG
 
     [SerializeField] private List<Pet_4> DefaultPetsEpic = new List<Pet_4>();
     [SerializeField] private List<Pet_5> DefaultPetsLegend = new List<Pet_5>();
