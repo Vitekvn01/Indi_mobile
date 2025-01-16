@@ -16,6 +16,7 @@ public class RollPanelSystem : MonoBehaviour
     public delegate void RollPanel();
     public event RollPanel EventCreatLoadPanel;
     public event RollPanel EventDestroyRollPanel;
+    public event RollPanel EventCloseRollPanel;
 
     private void Start()
     {
@@ -52,5 +53,10 @@ public class RollPanelSystem : MonoBehaviour
     public void DestroyPanel()
     {
         EventDestroyRollPanel?.Invoke();
+    }
+
+    public void ClosePanel()
+    { 
+        EventCloseRollPanel?.Invoke();
     }
 }

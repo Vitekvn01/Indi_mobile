@@ -614,7 +614,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5497166352022485265}
         m_TargetAssemblyTypeName: RollPanelSystem, Assembly-CSharp
-        m_MethodName: DestroyPanel
+        m_MethodName: ClosePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

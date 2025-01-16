@@ -45,14 +45,41 @@ public class PetManager : MonoBehaviour
         return currentPett;
     }
 
-    public int CheckCountEpicPet()
+    public IPet getOpenPetEpic(int number)
     {
-        return petsStorage.CheckCountEpicPet();
+        return petsStorage.getEpicPet(number);
     }
 
-    public int CheckCountLegendPet()
+    public IPet getOpenPetLegend(int number)
     {
-        return petsStorage.CheckCountLegendPet();
+        return petsStorage.getLegendPet(number);
+    }
+
+
+    public int CheckCountEpicPetOpen()
+    {
+        return petsStorage.CheckCountEpicPetOpen();
+    }
+
+    public int CheckCountLegendPetOpen()
+    {
+        return petsStorage.CheckCountLegendPetOpen();
+    }
+
+
+    public int CheckCountEpicPetDefault()
+    {
+        return petsStorage.CheckCountEpicPetDefault();
+    }
+
+    public int CheckCountLegendPetDefault()
+    {
+        return petsStorage.CheckCountLegendPetDefault();
+    }
+
+    public int GetCopyCountPet(IPet pet)
+    {
+        return petsStorage.getCountCopy(pet);
     }
 
     private void MakeAvailablePet(IPet petObject)

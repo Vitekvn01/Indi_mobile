@@ -307,12 +307,12 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     protected virtual int CalculateEpicPet()
     {
-        if (petManager.CheckCountEpicPet() == 0)
+        if (petManager.CheckCountEpicPetDefault() == 0)
         {
             return -1;
         }
 
-        calculNumberPet = petManager.CheckCountEpicPet();
+        calculNumberPet = petManager.CheckCountEpicPetDefault();
 
         number = Random.Range(0, calculNumberPet);
 
@@ -321,12 +321,12 @@ public class GatchaGlobal : MonoBehaviour, IGatchaSysteam
 
     protected virtual int CalculateLegendPet()
     {
-        if (petManager.CheckCountLegendPet() == 0)
+        if (petManager.CheckCountLegendPetDefault() == 0)
         {
             return -1;
         }
 
-        calculNumberPet = petManager.CheckCountLegendPet();
+        calculNumberPet = petManager.CheckCountLegendPetDefault();
 
         number = Random.Range(0, calculNumberPet);
 

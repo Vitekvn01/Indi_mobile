@@ -12,6 +12,7 @@ public class GatchaSystemUI : MonoBehaviour
 
     [Inject] private IResourceManager manager;
     [Inject] private IGatchaSysteam gatchaSystem;
+    [Inject] private SystemInteractionUI systemInteractionUI;
 
     [SerializeField] private float LoadPanelTimeActivate = 1;
 
@@ -44,6 +45,7 @@ public class GatchaSystemUI : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (panelPrize == null && panelLoad == null && panelRoll == null)
         {
             buttonTryRoll.interactable = true;
@@ -52,6 +54,7 @@ public class GatchaSystemUI : MonoBehaviour
         {
             buttonTryRoll.interactable = false;
         }
+        */
     }
 
     private IEnumerator TimerCoroutine()
@@ -67,6 +70,8 @@ public class GatchaSystemUI : MonoBehaviour
 
     public void CreatPanelTryRoll()
     {
+        systemInteractionUI.setUnInteract();
+
         panelRoll = container.InstantiatePrefab(panelRollPrefab, gameObject.transform);
 
         if (panelRoll.TryGetComponent<RollPanelSystem>(out rollPanelSystemObject))
@@ -74,7 +79,14 @@ public class GatchaSystemUI : MonoBehaviour
             rollPanelSystemObject.InstanceManager(manager, gatchaSystem);
             rollPanelSystemObject.EventCreatLoadPanel += creatLoadPanel;
             rollPanelSystemObject.EventDestroyRollPanel += destroyRollPanel;
+            rollPanelSystemObject.EventCloseRollPanel += ClosePanel;
         }
+    }
+
+    private void ClosePanel()
+    {
+        systemInteractionUI.setInteract();
+        destroyRollPanel();
     }
 
     private void creatLoadPanel()
@@ -95,6 +107,7 @@ public class GatchaSystemUI : MonoBehaviour
     {
         rollPanelSystemObject.EventCreatLoadPanel -= creatLoadPanel;
         rollPanelSystemObject.EventDestroyRollPanel -= destroyRollPanel;
+        rollPanelSystemObject.EventCloseRollPanel -= ClosePanel;
 
         Destroy(panelRoll);
     }
@@ -141,6 +154,8 @@ public class GatchaSystemUI : MonoBehaviour
         {
             prizePanelSystemObject.EventPrizePanelDestroy -= destroyPrizePanel;
             Destroy(panelPrize);
+
+            systemInteractionUI.setInteract();
         }
     }
 

@@ -166,9 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9a11dc576f3fa45b1f274ff38bdde0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  copyPets: []
-  OpenPetsEpic: []
-  OpenPetsLegend: []
   DefaultPetsEpic:
   - {fileID: 11400000, guid: 5765afdbc768704419430269cf8a934e, type: 2}
   - {fileID: 11400000, guid: 48bdddc5fbc628f4585633a1b86f1b83, type: 2}
@@ -183,6 +180,98 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dcb957d54a0ddc14a8cf3de2f2afacc0, type: 2}
   - {fileID: 11400000, guid: 2d14e0103a3b9b746ba1328eba291167, type: 2}
   - {fileID: 11400000, guid: 234fbba50df0c0d4e96591ba699037a4, type: 2}
+--- !u!1 &58108557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 58108558}
+  - component: {fileID: 58108559}
+  m_Layer: 0
+  m_Name: SystemInteractionUIInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &58108558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58108557}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477909147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &58108559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58108557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ff8726c108dbc40bde56c76e088ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  systemInteractionUI: {fileID: 145810122}
+--- !u!1 &145810120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 145810121}
+  - component: {fileID: 145810122}
+  m_Layer: 0
+  m_Name: SystemInteractionUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &145810121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145810120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1562286634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &145810122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145810120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4588bb80081e6d4438b83ecd8fd37660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allButonsUIInterection:
+  - {fileID: 852071445}
+  - {fileID: 1793538026}
 --- !u!1 &159868027
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +397,7 @@ MonoBehaviour:
   - {fileID: 428977717}
   - {fileID: 159868029}
   - {fileID: 1607083752}
+  - {fileID: 58108559}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -342,6 +432,7 @@ Transform:
   - {fileID: 428977716}
   - {fileID: 159868028}
   - {fileID: 1607083751}
+  - {fileID: 58108558}
   m_Father: {fileID: 1562286634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &552787288
@@ -422,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa3f291808f177408623ce59568e9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceManager: {fileID: 797292735}
+  _resourceManager: {fileID: 797292735}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +637,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a23e8089d27664cbb2f3242f748087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magicPower: 300
+  _cristals: 0
+  _magicWood: 0
+  _magicPower: 30000
 --- !u!4 &797292736
 Transform:
   m_ObjectHideFlags: 0
@@ -610,10 +703,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -714,7 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55d1409777b4d64688110a1808c816f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  petsStoragePanelPrefab: {fileID: 1832088174261047491, guid: 5001522c023245f468a0b5e476f1c13d, type: 3}
+  petsStoragePanelPrefab: {fileID: 8900206188245684536, guid: b4a8d04c0904e0546b1364b24d8d2051, type: 3}
 --- !u!1 &852071443
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.085}
   m_AnchorMax: {x: 1, y: 0.087000005}
-  m_AnchoredPosition: {x: -80.29999, y: 2.2000122}
+  m_AnchoredPosition: {x: -80.30005, y: 2.2000732}
   m_SizeDelta: {x: 161, y: 27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &852071445
@@ -1300,6 +1393,7 @@ Transform:
   - {fileID: 797292736}
   - {fileID: 477909147}
   - {fileID: 552787289}
+  - {fileID: 145810121}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1607083750
@@ -1451,7 +1545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9004792, y: 0.88600004}
   m_AnchorMax: {x: 0.9954792, y: 0.9916667}
-  m_AnchoredPosition: {x: 0.2999878, y: -1.1000061}
+  m_AnchoredPosition: {x: 0.30004883, y: -1.0999756}
   m_SizeDelta: {x: 4.8264008, y: 3.3647995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1793538026
