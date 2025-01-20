@@ -5,6 +5,14 @@ using UnityEngine;
 using UnityEngine.Scripting;
 using Zenject;
 
+public enum SortingType
+{
+    Quality,
+    AZ,
+    ZA,
+};
+
+
 public class PetManager : MonoBehaviour
 {
     [Inject] private PetsStorage petsStorage;
@@ -45,16 +53,15 @@ public class PetManager : MonoBehaviour
         return currentPett;
     }
 
-    public IPet getOpenPetEpic(int number)
+    public IPet getSortingStorage(int number)
     {
-        return petsStorage.getEpicPet(number);
+        return petsStorage.getSorting(number);
     }
 
-    public IPet getOpenPetLegend(int number)
+    public int getCountCopy()
     {
-        return petsStorage.getLegendPet(number);
+        return petsStorage.getCopyCount();
     }
-
 
     public int CheckCountEpicPetOpen()
     {
@@ -80,6 +87,11 @@ public class PetManager : MonoBehaviour
     public int GetCopyCountPet(IPet pet)
     {
         return petsStorage.getCountCopy(pet);
+    }
+
+    public void sortingPets(SortingType type)
+    {
+        petsStorage.sortingForUI(type);
     }
 
     private void MakeAvailablePet(IPet petObject)

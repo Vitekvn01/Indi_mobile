@@ -26,6 +26,7 @@ public class PetsStorageUI : MonoBehaviour
 
     private void closePetsStorageUI()
     {
+        mainStoragePanelUI.EventCloseStoragePanel -= closePetsStorageUI;
         systemInteractionUI.setInteract();
         Destroy(petsStoragePanelObject);
     }

@@ -1,29 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PetsStorage : MonoBehaviour
 {
-    //[SerializeField] private List<ScriptableObject> copyPets = new List<ScriptableObject>(); // DBG
     [SerializeField] private List<IPet> copyPets = new List<IPet>(); // DBG
-
-    //[SerializeField] private List <ScriptableObject> OpenPetsEpic = new List<ScriptableObject> (); // DBG
-    //[SerializeField] private List <ScriptableObject> OpenPetsLegend = new List<ScriptableObject>(); // DBG
-
     [SerializeField] private List<Pet_4> DefaultPetsEpic = new List<Pet_4>();
     [SerializeField] private List<Pet_5> DefaultPetsLegend = new List<Pet_5>();
 
     private List<IPet> OpenPetsEpic = new List<IPet>();
     private List<IPet> OpenPetsLegend = new List<IPet>();
 
-    //private Pet_4 currentSO_4;
-    //private Pet_5 currentSO_5;
+    private List<IPet> sortingOpenPetsEpic = new List<IPet>();
+    private List<IPet> sortingOpenPetsLegend = new List<IPet>();
+
+    private List<IPet> sortingList = new List<IPet>();
 
     private IPet currentSO_4;
     private IPet currentSO_5;
 
     private int counterCopyPet;
+
+    public void sortingForUI(SortingType sortingType)
+    {
+        sortingList.Clear();
+
+        sortingList = new List<IPet>(OpenPetsEpic);
+        sortingList.AddRange(OpenPetsLegend);
+
+        if (sortingType == SortingType.Quality)
+        {
+            
+        }
+        else if (sortingType == SortingType.AZ)
+        {
+            sortingList = sortingList.OrderBy(x => x.GetName()).ToList();
+        }
+        else if(sortingType == SortingType.ZA)
+        {
+            sortingList = sortingList.OrderByDescending(x => x.GetName()).ToList();
+        }
+    }
 
     public int getCountCopy(IPet pet)
     {
@@ -132,5 +151,25 @@ public class PetsStorage : MonoBehaviour
     public IPet getLegendPet(int number)
     {
         return OpenPetsLegend[number];
+    }
+
+    public IPet getSortingEpicPet(int number) // !!
+    {
+        return sortingOpenPetsEpic[number];
+    }
+
+    public IPet getSortingLegendPet(int number) // !!
+    {
+        return sortingOpenPetsLegend[number];
+    }
+
+    public IPet getSorting(int number)
+    {
+        return sortingList[number];
+    }
+
+    public int getCopyCount()
+    {
+        return sortingList.Count;
     }
 }
